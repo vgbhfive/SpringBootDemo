@@ -11,18 +11,14 @@
 
     <artifactId>persistence</artifactId>
 
-
     <dependencies>
         <dependency>
-            <groupId>com.vgbh</groupId>
             <artifactId>model</artifactId>
+            <groupId>com.vgbh</groupId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
 
-
     </dependencies>
-
-
 
 </project>
