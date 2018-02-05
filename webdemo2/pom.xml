@@ -6,21 +6,7 @@
 	<groupId>com.vgbh</groupId>
 	<artifactId>webdemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>web</module>
-        <module>persistence</module>
-        <module>model</module>
-    </modules>
-
-    <!-- 修改成 pom-->
-    <!--
-        model: 模型层
-        persistence； 持久层
-        web：表示层
-
-        web -> persistence -> model
-    -->
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
 	<name>webdemo</name>
 	<description>Demo project for Spring Boot</description>
