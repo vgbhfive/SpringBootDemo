@@ -2,7 +2,7 @@ package com.vgbh.webdemo.controller;
 
 
 import com.vgbh.webdemo.domain.User;
-import com.vgbh.webdemo.repository.UserRepository;
+import com.vgbh.webdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService; = userRepository;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User save (@RequestParam String name) {
         User user = new User();
         user.setName(name);
-        if (userRepository.save(user)) {
+        if (userService.save(user)) {
             System.out.println(user.toString());
         }
         return user;

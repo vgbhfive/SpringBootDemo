@@ -1,4 +1,4 @@
-package com.vgbh.webdemo.repository;
+package com.vgbh.webdemo.service;
 
 
 import com.vgbh.webdemo.domain.User;
@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-public class UserRepository {
+public class UserService {
 
     private final static ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
 
