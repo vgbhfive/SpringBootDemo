@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="1 seconds" >
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <restJUL>true</restJUL>
+    </contextListener>
+
+    <jmxConfigurat/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <partern>logback: %d{HH:mm:ss.SSS} %logger{36} - %msg%n</partern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework.web" level="DEBUG">
+        <root level="info">
+            <appender-ref ref="console"/>
+        </root>
+    </logger>
+</configuration>
+
+<!--
+    logback配置文件用来配置日志文件。
+-->
