@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的namespace必须和是对应的mapper.java的地址-->
+<mapper namespace="com.vgbh.mybatisdemo.dao.StudentDao">
+    <!--这里的type，因为我在spring-mybatis.xml中配置了包的简称，所以不需要再写包名了，否则需要加上，
+    id的话在后面的ResultMap中会用到，如果像我这样实体类的属性和数据库字段名不一致，则需要用ResultMap作为返回值，否则获取的值的字段会变成null-->
+    <resultMap type="com.vgbh.mybatisdemo.entity.Student" id="BaseResultMap">
+        <id column="student_id" jdbcType="INTEGER" property="studentId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="locked" jdbcType="TINYINT" property="locked" />
+        <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+        <result column="gmt_modified" jdbcType="TIMASTAMP" property="gmtModified" />
+    </resultMap>
+
+    <!--id必须和对应的mapper.java的方法名称相同，不管返回类型是List还是只有一个，resultMap或resultType都是一样的-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from student
+    </select>
+
+</mapper>
