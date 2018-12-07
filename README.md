@@ -16,3 +16,6 @@ Spring Web Flux Demo
 ## swaggerdemo
 练习使用swagger建立API文档
 
+## RabbitMQ
+消息队列
+
