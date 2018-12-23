@@ -19,3 +19,5 @@ Spring Web Flux Demo
 ## RabbitMQ
 消息队列
 
+## Actuator
+服务控制与管理
