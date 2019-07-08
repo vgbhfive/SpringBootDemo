@@ -33,6 +33,8 @@ Spring MVC 相关的内容进行综合的练习Demo。
 	</dependencies>
 ```
 
+<hr>
+
 ## webdemo:
 Spring Web Flux Demo
 
@@ -77,6 +79,8 @@ Spring Web Flux Demo
     }
 ```
 
+<hr>
+
 ## webdemo2:
 将Spring项目进行多模块化拆分
 
@@ -106,6 +110,8 @@ Spring Web Flux Demo
 	</dependencies>
 ```
 
+<hr>
+
 ## websocket/NettyDemo
 
 ### 内容
@@ -114,6 +120,8 @@ Spring Web Flux Demo
 
 ### 依赖
 netty-all-5.0.0.Alpha1.jar
+
+<hr>
 
 ## swaggerdemo
 
@@ -151,6 +159,8 @@ netty-all-5.0.0.Alpha1.jar
     </dependencies>
 
 ```
+
+<hr>
 
 ## RabbitMQ
 消息队列
@@ -287,6 +297,8 @@ public class BookHandler {
 }
 ```
 
+<hr>
+
 ## mybatisDemo
 
 ### 内容
@@ -366,7 +378,9 @@ SSM(Spring MVC、 Spring Boot、 Mybatis) ，使用SSM实现功能主要为学�
     </dependencies>
 ```
 
-## Actuator
+<hr>
+
+## actuatorDemo
 
 ### 内容
 服务控制与管理。
@@ -419,11 +433,23 @@ public class MyEndpointConfiguration {
 }
 ```
 
+<hr>
+
 ## bookdemo/bookdemo2/bookdemo3/bookdemo3sr
 
-## 内容
+### 内容
 学会使用@Scope注解、Entity类字段注解、JSR250、Profile。
 @Schedule、定时任务启动器。
 使用Spring MVC构造服务。
 自定义拦截器。
 
+<hr>
+
+## RedisDemo/redisdemo2
+
+### 内容
+RedisDemo 用于实现一个简单版本的缓存服务器，具备最基础的功能。
+redisdemo2 实现的Book 的CURD ，并加入了缓存的内容，使用的是Spring Cache 的接口。
+
+<hr>
+如果你还想看其他的内容，可以去看我的[博客](https://vgbhfive.github.io/)。

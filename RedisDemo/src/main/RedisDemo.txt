@@ -1,0 +1,80 @@
+JSR107包中是与规范相关的一些类的封装，store包中包含的是与数据类存储相关类的封装。
+
+1. 核心概念
+
+Cache API 定义了 4 个核心概念：
+
+1）、CachingProvider：定义了创建、配置、获取、管理和控制多个 CacheManager。
+一个应用可以在运行期访问多个 CachingProvider。
+
+2）、CacheManager：定义了创建、配置、获取、管理和控制多个唯一命名的 Cache，这些 Cache 存在于 CacheManager 的上下文中。
+一个 CacheManager 仅被一个 CachingProvider 所拥有。
+
+3）、Cache：是一个类似 Map 的数据结构并临时存储以 Key 为索引的值。
+一个 Cache 仅被一个 CacheManager 所拥有。
+
+4）、Entry：是一个存储在 Cache 中的 key-value 对。
+
+每一个存储在 Cache 中的条目有一个定义的有效期，即 Expiry Duration。一旦超过这个时间，条目为过期的状态。
+一旦过期，条目将不可访问、更新和删除。缓存有效期可以通过 ExpiryPolicy 设置。
+
+2. Store-By-Value和 Store-By-Reference（值传递和引用传递）
+
+Store-By-Value 和 Store-By-Reference 是两种不同的缓存实现。
+
+1）、Store-By-Value：指在 key/value 存入缓存时，将其值拷贝一份存入缓存。
+避免在其他程序修改 key 或 value 的值时，污染缓存内存储的内容。
+
+2）、Store-By-Reference：指在 key/value 存入缓存时，直接将其引用存入缓存。
+
+java常见的堆内缓存，一般使用 Store-By-Reference 方式，提升缓存性能。常见的堆外缓存和进程外缓存，一般由于使用引用在技术上比较复杂，
+通常使用 Store-By-Value 方式。
+
+3.缓存过期策略
+
+如果缓存中的数据已经过期，那它将不能从缓存返回。如果缓存没有配置过期政策，默认是永久有效的策略（Eternal）。
+
+过期策略可以在配置时提供一个 ExpiryPolicy 实现的设置，见下面的定义：
+publicinterface ExpiryPolicy<K, V> {
+ Duration getExpiryForCreatedEntry(Entry<?extends K, ? extends V>entry);
+   DurationgetExpiryForAccessedEntry(Entry<? extends K, ? extends V>entry);
+   Duration getExpiryForModifiedEntry(Entry<?extends K, ? extends V>entry);
+}
+
+其中：
+
+getExpiryForCreatedEntry()：当数据创建后的到期持续时间
+
+getExpiryForAccessedEntry()： 当数据访问后的到期持续时间
+
+getExpiryForModifiedEntry()：当数据修改后的到期持续时间
+
+当这些方法被调用时，ExpiryPolicy 将返回下列值之一：
+
+持续时间等于缓存配置的过期时间
+
+Duration.ZERO 表明数据目前已经是过期的
+
+在特定的缓存操作执行后的一段时间后数据需要进行回收，该时间由 Duration类定义。
+Duration是由一个由 java.util.concurrent.TimeUnit 和时长 durationAmount 组成，
+TimeUnit 的最小值为 TimeUnit.MILLISECONDS。
+
+
+4.前期准备
+
+我们的缓存框架只选取了最基本的get（缓存获取）、put（放入缓存）、remove（根据key删除缓存）、clear（清空缓存）、这些方法都是工作中最基本使用的。
+
+
+5.缓存架构
+
+通过JSR107规范，共分为：
+客户端层：使用者直接通过该层与数据交互。
+缓存提供层：主要对缓存管理层的生命周期进行维护，负责缓存管理层的创建、保存、获取及销毁。
+缓存管理层：主要对缓存客户端的生命周期进行维护，负责缓存客户端的创建、保存、获取及销毁。
+缓存存储层：负责数据以怎样的形式存储。
+其中缓存存储层又分为基本存储层：是以普通的ConcurrentHashMap为存储核心，数据不淘汰。
+LRU存储层：是以最近最少用为原则进行的数据存储和缓存淘汰机制。
+Weak存储层：是以弱引用为原则的数据存储和缓存淘汰机制。
+
+
+6.
