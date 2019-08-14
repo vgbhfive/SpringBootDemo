@@ -1,0 +1,4 @@
+cn\vgbhfive\annotation\EnableVgbhfiveCient.class
+cn\vgbhfive\config\VgbhfiveAutoConfigure.class
+cn\vgbhfive\client\VgbhfiveClient.class
+cn\vgbhfive\properties\DemoProperties.class
