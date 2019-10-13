@@ -455,6 +455,20 @@ redisdemo2 实现的Book 的CURD ，并加入了缓存的内容，使用的是Sp
 ## poidemo
 poidemo 主要学习如何导出报表。
 
+### 依赖
+```XML
+<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>
+```
+
 <hr>
 如果你还想看其他的内容，可以去看我的[博客](https://vgbhfive.github.io/)。
 
