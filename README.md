@@ -452,6 +452,7 @@ RedisDemo 用于实现一个简单版本的缓存服务器，具备最基础的�
 redisdemo2 实现的Book 的CURD ，并加入了缓存的内容，使用的是Spring Cache 的接口。
 
 <hr>
+
 ## poidemo
 poidemo 主要学习如何导出报表。
 
