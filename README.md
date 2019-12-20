@@ -471,5 +471,37 @@ poidemo 主要学习如何导出报表。
 ```
 
 <hr>
+
+## jibtest
+jibtest 主要用于测试谷歌的Jib 使用Docker 构建镜像。
+
+### 依赖
+```xml
+<plugin>
+    <groupId>com.google.cloud.tools</groupId>
+    <artifactId>jib-maven-plugin</artifactId>
+    <version>1.6.1</version>
+    <configuration>
+        <from>
+            <!--base image-->
+            <image>openjdk:alpine</image>
+        </from>
+        <to>
+            <!--目标镜像registry地址，为了方便测试，你需要换成自己的地址，如果你的网络不好，可以选用国内加速器，比如阿里云的-->
+            <image>registry.hub.docker.com/vgbhfive/jibtest</image>
+        </to>
+    </configuration>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>build</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+<hr>
 如果你还想看其他的内容，可以去看我的[博客](https://vgbhfive.github.io/)。
 
