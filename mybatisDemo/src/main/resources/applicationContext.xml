@@ -23,7 +23,7 @@
                   value="jdbc:mysql://localhost:3306/vgbh?useUnicode=true;characterEncoding=utf8"/>
         <!-- 改为你的地址即可 -->
         <property name="username" value="root"/>
-        <property name="password" value="9756111"/>
+        <property name="password" value=""/>
     </bean>
 
     <!-- 配置mybatis的sqlSessionFactory -->
