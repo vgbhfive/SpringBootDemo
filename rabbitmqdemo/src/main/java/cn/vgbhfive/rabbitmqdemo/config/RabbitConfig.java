@@ -1,9 +1,16 @@
 package cn.vgbhfive.rabbitmqdemo.config;
 
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +19,7 @@ import java.util.Map;
  * @time: 2018/12/07
  * @author: Vgbh
  */
+@EnableRabbit
 @Configuration
 public class RabbitConfig {
 
@@ -59,6 +67,24 @@ public class RabbitConfig {
      * 延迟模式队列
      */
     public static final String DELAY_MODE_QUEUE = "delay.mode";
+
+    @Bean(value = "MQConnectionFactory")
+    public ConnectionFactory mqConnectionFactory(){
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+        connectionFactory.setAddresses("127.0.0.1:5672");
+        connectionFactory.setVirtualHost("/");
+        connectionFactory.setUsername("admin");
+        connectionFactory.setPassword("admin");
+        connectionFactory.setPublisherConfirms(true);
+        connectionFactory.setPublisherReturns(true);
+        return connectionFactory;
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(@Qualifier("MQConnectionFactory") ConnectionFactory connectionFactory){
+        RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory);
+        return rabbitAdmin;
+    }
 
     /**
      * 一般队列
@@ -155,7 +181,7 @@ public class RabbitConfig {
      */
     @Bean
     public CustomExchange delayExchange() {
-        Map<String, Object> args = new HashMap();
+        Map<String, Object> args = new HashMap(1);
         args.put("x-delayed-type", "direct");
         return new CustomExchange(DELAY_MODE_QUEUE, "x-delayed-message", true, false, args);
     }
