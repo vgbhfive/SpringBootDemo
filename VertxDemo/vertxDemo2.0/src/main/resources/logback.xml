@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<configuration scan="true" scanPeriod="1 seconds">-->
+    <!--<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">-->
+        <!--<restJUL>true</restJUL>-->
+    <!--</contextListener>-->
+
+    <!--<jmxConfigurat/>-->
+    <!--<appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+            <!--<partern>logback: %d{HH:mm:ss.SSS} %logger{36} - %msg%n</partern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <!--<logger name="org.springframework.web" level="DEBUG">-->
+        <!--<root level="info">-->
+            <!--<appender-ref ref="console"/>-->
+        <!--</root>-->
+    <!--</logger>-->
+<!--</configuration>-->
+
+<configuration>
+
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+
+<logger name="com.mchange.v2" level="warn"/>
+<logger name="io.netty" level="warn"/>
+<logger name="io.vertx" level="info"/>
+<logger name="io.vertx.guides.wiki" level="debug"/>
+
+<root level="debug">
+    <appender-ref ref="STDOUT"/>
+</root>
+
+</configuration>
